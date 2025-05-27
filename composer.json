@@ -1,5 +1,5 @@
 {
-    "name": "michaeldzjap/twofactor-auth",
+    "name": "dougblackjr/twofactor-auth",
     "description": "A two-factor authentication package for Laravel tuned for use with MessageBird Verify",
     "keywords": [
         "authentication",
@@ -8,7 +8,7 @@
         "messagebird",
         "laravel"
     ],
-    "homepage": "https://github.com/michaeldzjap/twofactor-authentication",
+    "homepage": "https://github.com/dougblackjr/twofactor-authentication",
     "license": "MIT",
     "type": "package",
     "minimum-stability": "dev",
