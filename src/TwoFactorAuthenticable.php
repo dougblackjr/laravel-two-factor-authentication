@@ -44,7 +44,6 @@ trait TwoFactorAuthenticable
         $enabled = config('twofactor-auth.enabled', 'user');
 
         if ($enabled === 'user' || $enabled === 'always') {
-            $this->twoFactorAuth->update(['id' => $id]);
             $this->upsertTwoFactorAuthId($id);
         }
     }
