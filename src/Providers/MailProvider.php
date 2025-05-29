@@ -50,7 +50,8 @@ class MailProvider extends BaseProvider implements TwoFactorProvider
             'loginUrl' => url('/login')
         ];
         // Technically, this means Simple Mail Service for this
-        $html = Markdown::render(config('twofactor-auth.providers.mail.template'), $data);
+        $markdown = app(Markdown::class);
+        $html = $markdown->render(config('twofactor-auth.providers.mail.template'), $data);
         Mail::send([], [], function () use ($html, $user, $message) {
             $message->to($user->email)
                     ->subject('Your ' . config('app.name') . ' Login Code')
