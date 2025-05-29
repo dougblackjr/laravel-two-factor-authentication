@@ -32,8 +32,8 @@ class MailProvider extends BaseProvider implements TwoFactorProvider
      */
     public function verify($user, string $token)
     {
-        $token = $user->twoFactorAuth()->first();
-        return $token && Str::lower($token->id) === Str::lower($token);
+        $userToken = $user->twoFactorAuth()->first();
+        return $userToken && Str::lower($userToken->id) === Str::lower($token);
     }
 
     /**
