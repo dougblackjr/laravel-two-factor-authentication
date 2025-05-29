@@ -55,7 +55,7 @@ class MailProvider extends BaseProvider implements TwoFactorProvider
         Mail::send([], [], function ($message) use ($html, $user) {
             $message->to($user->email)
                     ->subject('Your ' . config('app.name') . ' Login Code')
-                    ->html($html);
+                    ->html((string) $html);
         });
     }
 }
