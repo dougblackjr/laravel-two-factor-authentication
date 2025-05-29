@@ -34,6 +34,11 @@ class TwoFactorAuthManager extends Manager
         );
     }
 
+    protected function createMailDriver(): TwoFactorProvider
+    {
+        return new MailProvider;
+    }
+
     /**
      * Create an instance of the driver.
      *
