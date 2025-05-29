@@ -41,13 +41,13 @@ class MailProvider extends BaseProvider implements TwoFactorProvider
      */
     public function sendSMSToken($user): void
     {
-        $token = Str::random(6);
+        $token = str_pad(random_int(0, 999999), 6, '0', STR_PAD_LEFT);
         $user->setTwoFactorAuthId($token);
         $data = [
             'user' => $user,
             'token' => $token,
             'expires_in' => config('twofactor-auth.token_lifetime', 10), // default 10 mins
-            'loginUrl' => url('/login')
+            'loginUrl' => url(config('twofactor-auth.routes.get.url')),
         ];
         // Technically, this means Simple Mail Service for this
         $markdown = app(Markdown::class);
