@@ -12,7 +12,7 @@ return [
     | authenticated. You may set this to any of the connections defined in the
     | "providers" array below.
     |
-    | Supported: "messagebird", "null"
+    | Supported: "messagebird", "mail", "null"
     |
     */
 
@@ -40,6 +40,10 @@ return [
             ],
         ],
 
+        'mail' => [
+            'template' => env('MESSAGEBIRD_MAIL_TEMPLATE', 'twofactor-auth::email'),
+        ],
+
         'null' => [
             'driver' => 'null',
         ],
@@ -60,6 +64,17 @@ return [
     */
 
     'enabled' => 'user',
+
+    /*
+    |--------------------------------------------------------------------------
+    | Token Lifetime (in minutes)
+    |--------------------------------------------------------------------------
+    |
+    | The number of minutes a token is valid
+    |
+    */
+
+    'token_lifetime' => 10,
 
     /*
     |--------------------------------------------------------------------------
