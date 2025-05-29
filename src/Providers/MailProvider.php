@@ -8,7 +8,7 @@ use Illuminate\Support\Facades\View;
 use Illuminate\Support\Str;
 use MichaelDzjap\TwoFactorAuth\Contracts\TwoFactorProvider;
 use MichaelDzjap\TwoFactorAuth\Models\TwoFactorAuth;
-use Symfony\Component\Mime\Part\HtmlPart;
+use Symfony\Component\Mime\Part\TextHtmlPart;
 
 class MailProvider extends BaseProvider implements TwoFactorProvider
 {
@@ -56,7 +56,7 @@ class MailProvider extends BaseProvider implements TwoFactorProvider
         Mail::send([], [], function ($message) use ($html, $user) {
             $message->to($user->email)
                     ->subject('Your ' . config('app.name') . ' Login Code');
-            $message->getSymfonyMessage()->setBody(new HtmlPart($html));
+            $message->getSymfonyMessage()->setBody(new TextHtmlPart($html));
         });
     }
 }
