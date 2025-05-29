@@ -27,7 +27,9 @@ trait TwoFactorAuthenticable
     public function twoFactorAuth(): HasOne
     {
         return $this->hasOne(
-            \MichaelDzjap\TwoFactorAuth\Models\TwoFactorAuth::class, 'user_id', $this->getKeyName()
+            \MichaelDzjap\TwoFactorAuth\Models\TwoFactorAuth::class,
+            'user_id',
+            $this->getKeyName()
         );
     }
 
@@ -41,11 +43,8 @@ trait TwoFactorAuthenticable
     {
         $enabled = config('twofactor-auth.enabled', 'user');
 
-        if ($enabled === 'user') {
+        if ($enabled === 'user' || $enabled === 'always') {
             $this->twoFactorAuth->update(['id' => $id]);
-        }
-
-        if ($enabled === 'always') {
             $this->upsertTwoFactorAuthId($id);
         }
     }
