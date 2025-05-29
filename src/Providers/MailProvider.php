@@ -2,7 +2,9 @@
 
 namespace MichaelDzjap\TwoFactorAuth\Providers;
 
+use Illuminate\Mail\Markdown;
 use Illuminate\Support\Facades\Mail;
+use Illuminate\Support\Facades\View;
 use Illuminate\Support\Str;
 use MichaelDzjap\TwoFactorAuth\Contracts\TwoFactorProvider;
 use MichaelDzjap\TwoFactorAuth\Models\TwoFactorAuth;
@@ -48,9 +50,11 @@ class MailProvider extends BaseProvider implements TwoFactorProvider
             'loginUrl' => url('/login')
         ];
         // Technically, this means Simple Mail Service for this
-        Mail::send(config('twofactor-auth.providers.mail.template'), $data, function ($message) {
+        $html = Markdown::render(config('twofactor-auth.providers.mail.template'), $data);
+        Mail::send([], [], function () use ($html, $user, $message) {
             $message->to($user->email)
-                    ->subject('Your ' . config('app.name') . ' Login Code');
+                    ->subject('Your ' . config('app.name') . ' Login Code')
+                    ->setBody($html, 'text/html');
         });
     }
 }
