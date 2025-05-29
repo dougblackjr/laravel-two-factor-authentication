@@ -6,6 +6,7 @@ use Illuminate\Support\Manager;
 use MessageBird\Client;
 use MichaelDzjap\TwoFactorAuth\Contracts\TwoFactorProvider;
 use MichaelDzjap\TwoFactorAuth\Providers\MessageBirdVerify;
+use MichaelDzjap\TwoFactorAuth\Providers\MailProvider;
 use MichaelDzjap\TwoFactorAuth\Providers\NullProvider;
 
 class TwoFactorAuthManager extends Manager
